@@ -1,7 +1,7 @@
 package com.mjtal.gulimall.gulimallthirdparty;
 
 import com.aliyun.oss.ClientException;
-import com.aliyun.oss.OSSClient;
+import com.aliyun.oss.OSS;
 import com.aliyun.oss.OSSException;
 import com.aliyun.oss.model.PutObjectRequest;
 import org.junit.jupiter.api.Test;
@@ -14,7 +14,7 @@ import java.io.File;
 class GulimallThirdPartyApplicationTests {
 
     @Autowired
-    OSSClient ossClient;
+    OSS ossClient;
 
     @Test
     public void testUpload(){
