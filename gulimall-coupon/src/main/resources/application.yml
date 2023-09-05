@@ -5,11 +5,12 @@ spring:
   datasource:
     username: root
     password: root
-    url: jdbc:mysql://192.168.2.62:3306/gulimall_sms
+    url: jdbc:mysql://192.168.163.136:3306/gulimall_sms
     driver-class-name: com.mysql.cj.jdbc.Driver
   cloud:
     nacos:
       server-addr: 127.0.0.1:8848
+  # 在nacos中注册服务时的名字，远端获取也需要用到
   application:
     name: gulimall-coupon
 

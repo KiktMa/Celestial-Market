@@ -25,7 +25,7 @@ import com.mjtal.common.utils.R;
  * @email mjtal@gmail.com
  * @date 2022-08-09 22:45:13
  */
-@RefreshScope
+@RefreshScope // 动态的从nacos中获取配置信息，不需要在项目中修改代码了
 @RestController
 @RequestMapping("coupon/coupon")
 public class CouponController {
