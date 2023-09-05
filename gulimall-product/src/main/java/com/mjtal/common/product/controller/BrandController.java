@@ -1,9 +1,11 @@
 package com.mjtal.common.product.controller;
 
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -15,6 +17,7 @@ import com.mjtal.common.product.service.BrandService;
 import com.mjtal.common.utils.PageUtils;
 import com.mjtal.common.utils.R;
 
+import javax.validation.Valid;
 
 
 /**
@@ -58,10 +61,23 @@ public class BrandController {
      */
     @RequestMapping("/save")
     //@RequiresPermissions("product:brand:save")
-    public R save(@RequestBody BrandEntity brand){
-		brandService.save(brand);
-
-        return R.ok();
+    // 为字段添加NotBlank注解后必须在controller中添加@Valid注解才能开启NotBlank的作用
+    // validation-api这个包中还包含大量此类的注解，NotNull也在其中，均用正则表达式写
+    // 可以使用他为字段添加后端校验
+    // 在@Valid注解后的参数后面必须跟一个BindingResult参数来获取校验失败或成功的结果
+    public R save(@Valid @RequestBody BrandEntity brand, BindingResult result){
+		if(result.hasErrors()){
+            Map<String,String> map = new HashMap<>();
+            result.getFieldErrors().forEach((item)->{
+                String defaultMessage = item.getDefaultMessage();
+                String objectName = item.getObjectName();
+                map.put(defaultMessage,objectName);
+            });
+            return R.error(400,"提交的数据不合法").put("data",map);
+        }else {
+            brandService.save(brand);
+            return R.ok();
+        }
     }
 
     /**

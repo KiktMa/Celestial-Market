@@ -10,13 +10,21 @@ spring:
   cloud:
     nacos:
       server-addr: 127.0.0.1:8848
-  application:
-    name: gulimall-product
     alicloud:
       access-key: LTAI5tH8Lt6GGRc1qteqfQoN
       secret-key: 9VMpQoD4BEPRto3xtzQMBDo7IW2dss
       oss:
         endpoint: oss-cn-hangzhou.aliyuncs.com
+        bucket: gulimall-sichuan
+
+#    alicloud:
+#      access-key: LTAI5tH8Lt6GGRc1qteqfQoN
+#      secret-key: 9VMpQoD4BEPRto3xtzQMBDo7IW2dss
+#      oss:
+#        endpoint: oss-cn-hangzhou.aliyuncs.com
+
+  application:
+    name: gulimall-product
 mybatis-plus:
   mapper-locations: classpath:/mapper/**/*.xml
   global-config:
