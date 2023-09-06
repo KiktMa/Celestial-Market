@@ -12,11 +12,13 @@
     <artifactId>gulimall-third-party</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>gulimall-third-party</name>
-    <description>gulimall-third-party</description>
+    <description>第三方服务</description>
+
     <properties>
         <java.version>1.8</java.version>
         <spring-cloud.version>2021.0.3</spring-cloud.version>
     </properties>
+
     <dependencies>
         <dependency>
             <groupId>com.mjtal.gulimall</groupId>
@@ -37,14 +39,24 @@
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-openfeign</artifactId>
         </dependency>
+        <dependency>
+            <groupId>com.alibaba.cloud</groupId>
+            <artifactId>spring-cloud-starter-alicloud-oss</artifactId>
+        </dependency>
 
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.junit.vintage</groupId>
+                    <artifactId>junit-vintage-engine</artifactId>
+                </exclusion>
+            </exclusions>
         </dependency>
-
     </dependencies>
+
     <dependencyManagement>
         <dependencies>
             <dependency>
@@ -54,11 +66,10 @@
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
-
             <dependency>
                 <groupId>com.alibaba.cloud</groupId>
                 <artifactId>spring-cloud-alibaba-dependencies</artifactId>
-                <version>2.2.5.RELEASE</version>
+                <version>2.1.1.RELEASE</version>
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
@@ -73,5 +84,13 @@
             </plugin>
         </plugins>
     </build>
+
+    <repositories>
+        <repository>
+            <id>spring-milestones</id>
+            <name>Spring Milestones</name>
+            <url>https://repo.spring.io/milestone</url>
+        </repository>
+    </repositories>
 
 </project>

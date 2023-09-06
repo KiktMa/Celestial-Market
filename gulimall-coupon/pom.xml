@@ -12,12 +12,19 @@
     <artifactId>gulimall-coupon</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>gulimall-coupon</name>
-    <description>gulimall-coupon</description>
+    <description>谷粒商城-优惠卷服务</description>
+
     <properties>
         <java.version>1.8</java.version>
         <spring-cloud.version>2021.0.3</spring-cloud.version>
     </properties>
+
     <dependencies>
+        <dependency>
+            <groupId>com.mjtal.gulimall</groupId>
+            <artifactId>gulimall-common</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+        </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
@@ -32,18 +39,8 @@
             <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>
         </dependency>
-        <dependency>
-            <groupId>com.mjtal.gulimall</groupId>
-            <artifactId>gulimall-common</artifactId>
-            <version>0.0.1-SNAPSHOT</version>
-            <exclusions>
-                <exclusion>
-                    <groupId>com.alibaba.cloud</groupId>
-                    <artifactId>spring-cloud-starter-alicloud-oss</artifactId>
-                </exclusion>
-            </exclusions>
-        </dependency>
     </dependencies>
+
     <dependencyManagement>
         <dependencies>
             <dependency>
