@@ -33,3 +33,6 @@ mybatis-plus:
       # 配置mybatis-plus的逻辑删除
       logic-delete-field: 1
       logic-not-delete-value: 0
+logging:
+  level:
+    com.mjtal.common: debug
