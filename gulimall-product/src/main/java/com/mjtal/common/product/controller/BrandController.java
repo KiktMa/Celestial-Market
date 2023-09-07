@@ -5,8 +5,8 @@ import java.util.Map;
 
 import com.mjtal.common.vaild.AddGroup;
 import com.mjtal.common.vaild.UpdateGroup;
+import com.mjtal.common.vaild.UpdateStatusGroup;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -40,7 +40,7 @@ public class BrandController {
      */
     @RequestMapping("/list")
     //@RequiresPermissions("product:brand:list")
-    public R list(@RequestParam Map<String, Object> params) {
+    public R list(@RequestParam Map<String, Object> params){
         PageUtils page = brandService.queryPage(params);
 
         return R.ok().put("page", page);
@@ -52,10 +52,31 @@ public class BrandController {
      */
     @RequestMapping("/info/{brandId}")
     //@RequiresPermissions("product:brand:info")
-    public R info(@PathVariable("brandId") Long brandId) {
+    public R info(@PathVariable("brandId") Long brandId){
         BrandEntity brand = brandService.getById(brandId);
 
         return R.ok().put("brand", brand);
+    }
+
+    /**
+     * 修改
+     */
+    @RequestMapping("/update")
+    //@RequiresPermissions("product:brand:update")
+    public R update(@Validated(UpdateGroup.class) @RequestBody BrandEntity brand){
+        brandService.updateDetail(brand);
+
+        return R.ok();
+    }
+    /**
+     * 修改状态
+     */
+    @RequestMapping("/update/status")
+    //@RequiresPermissions("product:brand:update")
+    public R updateStatus(@Validated(UpdateStatusGroup.class) @RequestBody BrandEntity brand){
+        brandService.updateById(brand);
+
+        return R.ok();
     }
 
     /**
@@ -80,28 +101,6 @@ public class BrandController {
 //        }else {
 //        }
         brandService.save(brand);
-        return R.ok();
-    }
-
-    /**
-     * 修改
-     */
-    @RequestMapping("/update")
-    //@RequiresPermissions("product:brand:update")
-    public R update(@RequestBody BrandEntity brand) {
-        brandService.updateById(brand);
-
-        return R.ok();
-    }
-
-    /**
-     * 修改状态
-     */
-    @RequestMapping("/update/status")
-    //@RequiresPermissions("product:brand:update")
-    public R updateStatus(@Validated(UpdateGroup.class) @RequestBody BrandEntity brand) {
-        brandService.updateById(brand);
-
         return R.ok();
     }
 
