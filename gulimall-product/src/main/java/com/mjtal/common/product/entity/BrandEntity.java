@@ -8,6 +8,7 @@ import java.io.Serializable;
 import com.mjtal.common.vaild.AddGroup;
 import com.mjtal.common.vaild.ListValue;
 import com.mjtal.common.vaild.UpdateGroup;
+import com.mjtal.common.vaild.UpdateStatusGroup;
 import lombok.Data;
 import org.hibernate.validator.constraints.URL;
 
@@ -38,12 +39,12 @@ public class BrandEntity implements Serializable {
     /**
      * 品牌名
      */
-    @NotBlank(message = "品牌名必须提交")
+    @NotBlank(message = "品牌名必须提交",groups = {UpdateGroup.class,AddGroup.class})
     private String name;
     /**
      * 品牌logo地址
      */
-    @URL(message = "logo必须是一个合法的url地址")
+    @URL(message = "logo必须是一个合法的url地址",groups = {UpdateGroup.class,AddGroup.class})
     private String logo;
     /**
      * 介绍
@@ -53,20 +54,20 @@ public class BrandEntity implements Serializable {
      * 显示状态[0-不显示；1-显示]
      */
     // 添加自定义校验注解
-    @ListValue(vals = {0, 1})
+    @ListValue(vals = {0, 1},groups = {UpdateGroup.class,AddGroup.class, UpdateStatusGroup.class})
     private Integer showStatus;
     /**
      * 检索首字母
      */
-    @NotEmpty
+    @NotEmpty(groups = {UpdateGroup.class,AddGroup.class})
     // java中写正则不需要加/ /
-    @Pattern(regexp = "^[a-zA-Z]$", message = "检索首字母必须是一个字母")
+    @Pattern(regexp = "^[a-zA-Z]$", message = "检索首字母必须是一个字母",groups = {UpdateGroup.class,AddGroup.class})
     private String firstLetter;
     /**
      * 排序
      */
-    @NotNull
-    @Min(value = 0, message = "排序必须不小于0")
+    @NotNull(groups = {UpdateGroup.class,AddGroup.class})
+    @Min(value = 0, message = "排序必须不小于0",groups = {UpdateGroup.class,AddGroup.class})
     private Integer sort;
 
 }
