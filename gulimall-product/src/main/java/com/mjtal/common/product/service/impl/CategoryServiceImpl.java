@@ -2,8 +2,7 @@ package com.mjtal.common.product.service.impl;
 
 import org.springframework.stereotype.Service;
 
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.stream.Collectors;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
@@ -54,6 +53,22 @@ public class CategoryServiceImpl extends ServiceImpl<CategoryDao, CategoryEntity
         baseMapper.deleteBatchIds(asList);
     }
 
+    @Override
+    public Long[] findcatelogPath(Long catelogId) {
+        List<Long> paths = new ArrayList<>();
+        List<Long> parentPath = findParentPath(catelogId, paths);
+        Collections.reverse(parentPath);
+        return parentPath.toArray(new Long[parentPath.size()]);
+    }
+
+    private List<Long> findParentPath(Long catelogId,List<Long> paths){
+        paths.add(catelogId);
+        CategoryEntity category = this.getById(catelogId);
+        if(category.getParentCid()!=0){
+            findParentPath(category.getParentCid(),paths);
+        }
+        return paths;
+    }
     private List<CategoryEntity> getChildrens(CategoryEntity root,List<CategoryEntity> all){
         List<CategoryEntity> children = all.stream().filter(categoryEntity -> categoryEntity.getParentCid() == root.getCatId())
                 .map((categoryEntity)->{
