@@ -32,19 +32,20 @@ public class BrandEntity implements Serializable {
     // 使用校验注解中的group来对注解进行分组执行
     // 例如下面的例子，在更新时就必须让id不为空，在添加时由于id为自增所以必须为空
     // group为接口，创建接口不许实现，只是一个识别标志
-    @Null(message = "新增不能指定品牌id", groups = AddGroup.class)
-    @NotNull(message = "修改必须指定品牌id", groups = UpdateGroup.class)
+    @NotNull(message = "修改必须指定品牌id",groups = {UpdateGroup.class})
+    @Null(message = "新增不能指定id",groups = {AddGroup.class})
     @TableId
     private Long brandId;
     /**
      * 品牌名
      */
-    @NotBlank(message = "品牌名必须提交",groups = {UpdateGroup.class,AddGroup.class})
+    @NotBlank(message = "品牌名必须提交",groups = {AddGroup.class,UpdateGroup.class})
     private String name;
     /**
      * 品牌logo地址
      */
-    @URL(message = "logo必须是一个合法的url地址",groups = {UpdateGroup.class,AddGroup.class})
+    @NotBlank(groups = {AddGroup.class})
+    @URL(message = "logo必须是一个合法的url地址",groups={AddGroup.class,UpdateGroup.class})
     private String logo;
     /**
      * 介绍
@@ -53,21 +54,21 @@ public class BrandEntity implements Serializable {
     /**
      * 显示状态[0-不显示；1-显示]
      */
-    // 添加自定义校验注解
-    @ListValue(vals = {0, 1},groups = {UpdateGroup.class,AddGroup.class, UpdateStatusGroup.class})
+//	@Pattern()
+    @NotNull(groups = {AddGroup.class, UpdateStatusGroup.class})
+    @ListValue(vals={0,1},groups = {AddGroup.class, UpdateStatusGroup.class})
     private Integer showStatus;
     /**
      * 检索首字母
      */
-    @NotEmpty(groups = {UpdateGroup.class,AddGroup.class})
-    // java中写正则不需要加/ /
-    @Pattern(regexp = "^[a-zA-Z]$", message = "检索首字母必须是一个字母",groups = {UpdateGroup.class,AddGroup.class})
+    @NotEmpty(groups={AddGroup.class})
+    @Pattern(regexp="^[a-zA-Z]$",message = "检索首字母必须是一个字母",groups={AddGroup.class,UpdateGroup.class})
     private String firstLetter;
     /**
      * 排序
      */
-    @NotNull(groups = {UpdateGroup.class,AddGroup.class})
-    @Min(value = 0, message = "排序必须不小于0",groups = {UpdateGroup.class,AddGroup.class})
+    @NotNull(groups={AddGroup.class})
+    @Min(value = 0,message = "排序必须大于等于0",groups={AddGroup.class,UpdateGroup.class})
     private Integer sort;
 
 }

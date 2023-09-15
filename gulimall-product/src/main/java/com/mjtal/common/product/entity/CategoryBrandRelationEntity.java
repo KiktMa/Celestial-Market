@@ -6,6 +6,7 @@ import com.baomidou.mybatisplus.annotation.TableName;
 import java.io.Serializable;
 
 import lombok.Data;
+import lombok.ToString;
 
 /**
  * 品牌分类关联
@@ -15,6 +16,7 @@ import lombok.Data;
  * @date 2022-08-09 22:20:09
  */
 @Data
+@ToString
 @TableName("pms_category_brand_relation")
 public class CategoryBrandRelationEntity implements Serializable {
 	private static final long serialVersionUID = 1L;

@@ -37,7 +37,6 @@ public class CategoryBrandRelationServiceImpl extends ServiceImpl<CategoryBrandR
     @Autowired
     CategoryBrandRelationDao relationDao;
 
-    @Lazy
     @Autowired
     BrandService brandService;
 
