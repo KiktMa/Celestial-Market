@@ -25,4 +25,14 @@ public class RadomTif {
         String endpath = "D:\\test_tif\\tif5\\test.tif";
         GdalTest.test.test(startpath);
     }
+
+    public String ReverseSentence(String str) {
+        if(str.length()==0||str.length()==1) return str;
+        int strlen = str.length()-1;
+        StringBuilder newstr = new StringBuilder();
+        for(int j = strlen;j>=0;j--){
+            newstr.append(str.charAt(j));
+        }
+        return String.valueOf(newstr);
+    }
 }
