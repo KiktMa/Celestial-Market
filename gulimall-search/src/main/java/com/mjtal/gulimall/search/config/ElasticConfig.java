@@ -1,13 +1,12 @@
 package com.mjtal.gulimall.search.config;
 
-import co.elastic.clients.elasticsearch.ElasticsearchClient;
-import co.elastic.clients.json.jackson.JacksonJsonpMapper;
-import co.elastic.clients.transport.ElasticsearchTransport;
-import co.elastic.clients.transport.rest_client.RestClientTransport;
 import org.apache.http.HttpHost;
+import org.elasticsearch.client.RequestOptions;
 import org.elasticsearch.client.RestClient;
+import org.elasticsearch.client.RestHighLevelClient;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+
 
 /**
  * @Author: june
@@ -16,17 +15,18 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class ElasticConfig {
 
-    @Bean
-    public RestClient esClient(){
-        RestClient restClient = RestClient.builder(
-                new HttpHost("192.168.163.136", 9200)).build();
+    public static final RequestOptions COMMON_OPTIONS;
+    static {
+        RequestOptions.Builder builder = RequestOptions.DEFAULT.toBuilder();
 
-        return restClient;
-//        // Create the transport with a Jackson mapper
-//        ElasticsearchTransport transport = new RestClientTransport(
-//                restClient, new JacksonJsonpMapper());
-//
-//        // And create the API client
-//        ElasticsearchClient client = new ElasticsearchClient(transport);
+        COMMON_OPTIONS = builder.build();
+    }
+
+    @Bean
+    public RestHighLevelClient esClient(){
+        RestHighLevelClient client = new RestHighLevelClient(
+                RestClient.builder(
+                        new HttpHost("192.168.163.136", 9200, "http")));
+        return client;
     }
 }
