@@ -3,6 +3,7 @@ package com.mjtal.gulimall.search;
 import com.alibaba.fastjson.JSON;
 import com.mjtal.gulimall.search.config.ElasticConfig;
 import lombok.Data;
+import lombok.ToString;
 import lombok.extern.slf4j.Slf4j;
 import org.elasticsearch.action.index.IndexRequest;
 import org.elasticsearch.action.index.IndexResponse;
@@ -32,6 +33,7 @@ import java.io.IOException;
 @SpringBootTest
 class GulimallSearchApplicationTests {
 
+    @ToString
     @Data
     static class Account {
         private int account_number;
