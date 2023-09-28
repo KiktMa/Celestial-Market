@@ -32,6 +32,8 @@ spring:
     date-format: yyyy-MM-dd HH:mm:ss
   thymeleaf:
     cache: false
+  redis:
+    host: 192.168.163.136
 
 mybatis-plus:
   mapper-locations: classpath:/mapper/**/*.xml
@@ -43,4 +45,4 @@ mybatis-plus:
       logic-not-delete-value: 0
 logging:
   level:
-    com.mjtal.common: debug
+    com.mjtal.common: error
