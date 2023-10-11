@@ -1,4 +1,4 @@
-package com.mjtal.common.to.es;
+package com.mjtal.common.to;
 
 import lombok.Data;
 
