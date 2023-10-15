@@ -4,6 +4,12 @@ spring:
       discovery:
         server-addr: 127.0.0.1:8848
     alicloud:
+      sms:
+        host: https://fesms.market.alicloudapi.com
+        path: /sms/
+        skin: 1
+        sign: 175622
+        appcode: b0563c23aff8428c97a54d4f7f9e28e5
       access-key: LTAI5tH8Lt6GGRc1qteqfQoN
       secret-key: 9VMpQoD4BEPRto3xtzQMBDo7IW2dss
       oss:
