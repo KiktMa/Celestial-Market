@@ -1,6 +1,6 @@
 package com.mjtal.gulimall.ware.service.impl;
 
-import com.mjtal.common.to.es.SkuHasStockVo;
+import com.mjtal.common.to.SkuHasStockVo;
 import com.mjtal.common.utils.R;
 import com.mjtal.gulimall.ware.feign.ProductFeignService;
 import org.springframework.beans.factory.annotation.Autowired;

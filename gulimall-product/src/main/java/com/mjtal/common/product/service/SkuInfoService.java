@@ -1,11 +1,13 @@
 package com.mjtal.common.product.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.mjtal.common.product.vo.SkuItemVo;
 import com.mjtal.common.utils.PageUtils;
 import com.mjtal.common.product.entity.SkuInfoEntity;
 
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.ExecutionException;
 
 /**
  * sku信息
@@ -23,5 +25,7 @@ public interface SkuInfoService extends IService<SkuInfoEntity> {
     void saveSkuInfo(SkuInfoEntity skuInfoEntity);
 
     List<SkuInfoEntity> getSkusBySpuId(Long spuId);
+
+    SkuItemVo item(Long skuId) throws ExecutionException, InterruptedException;
 }
 

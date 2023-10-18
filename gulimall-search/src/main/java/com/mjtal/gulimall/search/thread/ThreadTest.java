@@ -28,11 +28,11 @@ public class ThreadTest {
         // submit.get();
 
         System.out.println("main......start.....");
-        // CompletableFuture<Void> future = CompletableFuture.runAsync(() -> {
-        //     System.out.println("当前线程：" + Thread.currentThread().getId());
-        //     int i = 10 / 2;
-        //     System.out.println("运行结果：" + i);
-        // }, executor);
+         CompletableFuture<Void> future1 = CompletableFuture.runAsync(() -> {
+             System.out.println("当前线程：" + Thread.currentThread().getId());
+             int i = 10 / 2;
+             System.out.println("运行结果：" + i);
+         }, executor);
 
         /**
          * 方法完成后的处理

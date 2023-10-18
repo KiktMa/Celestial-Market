@@ -11,7 +11,7 @@ import com.mjtal.common.product.vo.*;
 import com.mjtal.common.to.SkuReductionTo;
 import com.mjtal.common.to.SpuBoundTo;
 import com.mjtal.common.to.es.SkuEsModel;
-import com.mjtal.common.to.es.SkuHasStockVo;
+import com.mjtal.common.to.SkuHasStockVo;
 import com.mjtal.common.utils.R;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -274,16 +274,19 @@ public class SpuInfoServiceImpl extends ServiceImpl<SpuInfoDao, SpuInfoEntity> i
 
             //TODO 3、查询品牌和分类的名字信息
             BrandEntity brandEntity = brandService.getById(sku.getBrandId());
-            esModel.setBrandName(brandEntity.getName());
-            esModel.setBrandId(brandEntity.getBrandId());
-            esModel.setBrandImg(brandEntity.getLogo());
+            if(brandEntity!=null){
+                esModel.setBrandName(brandEntity.getName());
+                esModel.setBrandId(brandEntity.getBrandId());
+                esModel.setBrandImg(brandEntity.getLogo());
+            }
 
             CategoryEntity categoryEntity = categoryService.getById(sku.getCatalogId());
-            esModel.setCatalogId(categoryEntity.getCatId());
-            esModel.setCatalogName(categoryEntity.getName());
-
-            //设置检索属性
-            esModel.setAttrs(attrsList);
+            if(categoryEntity!=null){
+                esModel.setCatalogId(categoryEntity.getCatId());
+                esModel.setCatalogName(categoryEntity.getName());
+                //设置检索属性
+                esModel.setAttrs(attrsList);
+            }
 
             BeanUtils.copyProperties(sku,esModel);
 

@@ -1,7 +1,7 @@
 package com.mjtal.gulimall.ware.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
-import com.mjtal.common.to.es.SkuHasStockVo;
+import com.mjtal.common.to.SkuHasStockVo;
 import com.mjtal.common.utils.PageUtils;
 import com.mjtal.gulimall.ware.entity.WareSkuEntity;
 
